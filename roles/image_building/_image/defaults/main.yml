@@ -1,0 +1,15 @@
+_base_name: ubuntu
+_base_tag: "latest"
+_version: ""
+_build_dir: /tmp/eibd
+_src_url: http://freefr.dl.sourceforge.net/project/bcusdk/bcusdk/bcusdk_0.0.5.tar.gz
+_repo: https://github.com/tekn0ir/eibd_docker_ansible_vagrant.git
+_extra_tag: latest
+_image_name: eibd_image
+_version: "0.0.5"
+_iteration: 1
+_image_tag: >
+    {{ _version }}
+    {%- if _iteration -%}
+    -{{ _iteration }}
+    {%- endif -%}

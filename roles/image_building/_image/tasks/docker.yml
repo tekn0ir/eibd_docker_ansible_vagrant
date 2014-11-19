@@ -1,0 +1,38 @@
+---
+- name: Fail if not a new release of Ubuntu
+  fail: msg="{{ ansible_distribution_version }} is not an acceptable version of Ubuntu for this role"
+  when: "ansible_distribution_version not in ['14.04']"
+
+- name: update dist
+  sudo: yes
+  apt: upgrade=dist update_cache=yes state=latest
+
+- name: install my favourite tools
+  sudo: yes
+  apt: name={{item}} state=present
+  with_items:
+    - git
+
+- name: install apt packages for docker
+  sudo: true
+  apt: name={{ item }} state=present
+  with_items:
+    - docker.io
+    - python-pip
+
+- name: install docker-py
+  sudo: yes
+  pip: name=docker-py version=0.3.1
+
+- name: symlink docker.io
+  sudo: yes
+  shell: ln -sf /usr/bin/docker.io /usr/local/bin/docker
+
+- name: bash completion for docker.io
+  sudo: yes
+  lineinfile: dest=/etc/bash_completion.d/docker.io
+              state=present
+              regexp='^complete -F _docker docker$'
+              line='complete -F _docker docker'
+              backup=yes
+              backrefs=yes

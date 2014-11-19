@@ -1,0 +1,20 @@
+---
+- name: EIDB Docker Container Builder
+  hosts: all
+#  vars:
+#    - name: _version
+#      #prompt: "_version"
+#      default: "0.0.1"
+#      private: no
+#    - name: _iteration
+#      #prompt: "_iteration"
+#      default: 1
+#      private: no
+  roles:
+    - _image
+
+#    tasks:
+
+
+#      - include: eibd.yml
+

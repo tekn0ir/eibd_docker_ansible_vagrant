@@ -1,0 +1,16 @@
+---
+- name: Build eibd app docker container
+#  hosts: all
+#  sudo: yes
+  vars_prompt:
+    - name: _version
+      prompt: "_version"
+      default: "0.0.1"
+      private: no
+    - name: _iteration
+      prompt: "_iteration"
+      default: 1
+      private: no
+  roles:
+    - _image
+#  - Ansibles.apt
